@@ -1,15 +1,18 @@
-//using com.ktgame.
-//
+using com.ktgame.manager.ui;
+using Cysharp.Threading.Tasks;
 
-using UnityEngine;
-
-namespace com.ktgame.manager.ui
+namespace Scenes.GamePlay
 {
-    public class GamePresenter : UIMainManager
+    public class GamePresenter : UIManager
     {
-        public void StartGame()
+        protected override UniTask OnInitialize()
         {
+            return UniTask.CompletedTask;
+        }
 
+        protected override void OnDispose()
+        {
+            
         }
     }
 }

@@ -2,5 +2,8 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Packages/com.ktgame.core" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Packages/com.ktgame.manager.ui" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Packages/com.ktgame.services.scene" vcs="Git" />
   </component>
 </project>

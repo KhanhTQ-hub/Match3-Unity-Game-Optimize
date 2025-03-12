@@ -37,14 +37,13 @@
       "url": "http://package.openupm.com"
     },
     "com.ktgame.core": {
-      "version": "1.0.5",
+      "version": "file:com.ktgame.core",
       "depth": 0,
-      "source": "registry",
+      "source": "embedded",
       "dependencies": {
         "com.ktgame.unitask": "1.0.0",
         "com.ktgame.foundation": "1.0.1"
-      },
-      "url": "http://package.openupm.com"
+      }
     },
     "com.ktgame.foundation": {
       "version": "1.0.3",
@@ -63,9 +62,9 @@
       "url": "http://package.openupm.com"
     },
     "com.ktgame.manager.ui": {
-      "version": "1.0.3",
+      "version": "file:com.ktgame.manager.ui",
       "depth": 0,
-      "source": "registry",
+      "source": "embedded",
       "dependencies": {
         "com.ktgame.core": "1.0.5",
         "com.ktgame.foundation": "1.0.3",
@@ -74,19 +73,17 @@
         "com.ktgame.unregister": "1.0.1",
         "com.ktgame.utils.class-type-reference": "1.0.1",
         "com.ktgame.unitask": "1.0.1"
-      },
-      "url": "http://package.openupm.com"
+      }
     },
     "com.ktgame.services.scene": {
-      "version": "1.0.2",
+      "version": "file:com.ktgame.services.scene",
       "depth": 0,
-      "source": "registry",
+      "source": "embedded",
       "dependencies": {
         "com.ktgame.core": "1.0.1",
         "com.ktgame.utils.class-type-reference": "1.0.0",
         "com.ktgame.unitask": "1.0.0"
-      },
-      "url": "http://package.openupm.com"
+      }
     },
     "com.ktgame.unitask": {
       "version": "1.0.1",

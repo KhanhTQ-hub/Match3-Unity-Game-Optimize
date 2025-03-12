@@ -340,6 +340,7 @@ GameObject:
   - component: {fileID: 1879110747}
   - component: {fileID: 1879110746}
   - component: {fileID: 1879110745}
+  - component: {fileID: 1879110748}
   m_Layer: 0
   m_Name: GamePresenter
   m_TagString: Untagged
@@ -424,11 +425,26 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1879110748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879110743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3331bc0de8834663bbb07f5d00d493fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _uiSettings: {fileID: 11400000, guid: 7ee71a0f021e0564089c24dc728008f3, type: 2}
+  _containerSettings: {fileID: 11400000, guid: b32acb1545de9f04990c14d6462c0322, type: 2}
+  _viewConfigs: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
