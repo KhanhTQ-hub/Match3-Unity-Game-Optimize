@@ -1,8 +1,9 @@
 ﻿using DG.Tweening;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Controllers;
+using Enums;
 using UnityEngine;
 
 public class Board
@@ -24,13 +25,16 @@ public class Board
     private Transform m_root;
 
     private int m_matchMin;
+    
+    private SkinType m_skinType;
 
-    public Board(Transform transform, GameSettings gameSettings)
+    public Board(Transform transform, GameSettings gameSettings, SkinModeController skinModeController)
     {
         m_root = transform;
 
         m_matchMin = gameSettings.MatchesMin;
-
+        m_skinType = skinModeController.SkinType;
+        
         this.boardSizeX = gameSettings.BoardSizeX;
         this.boardSizeY = gameSettings.BoardSizeY;
 
@@ -101,7 +105,7 @@ public class Board
                 }
 
                 item.SetType(Utils.GetRandomNormalTypeExcept(types.ToArray()));
-                item.SetView();
+                item.SetView(m_skinType); // Init item
                 item.SetViewRoot(m_root);
 
                 cell.Assign(item);
@@ -148,7 +152,7 @@ public class Board
                 NormalItem item = new NormalItem();
 
                 item.SetType(Utils.GetRandomNormalType());
-                item.SetView();
+                item.SetView(m_skinType);
                 item.SetViewRoot(m_root);
 
                 cell.Assign(item);
@@ -282,7 +286,7 @@ public class Board
                 cellToConvert = matches[rnd];
             }
 
-            item.SetView();
+            item.SetView(m_skinType);
             item.SetViewRoot(m_root);
 
             cellToConvert.Free();

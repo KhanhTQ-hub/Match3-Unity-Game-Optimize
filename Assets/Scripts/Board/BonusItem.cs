@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Enums;
 using UnityEngine;
 
 public class BonusItem : Item
@@ -20,7 +21,7 @@ public class BonusItem : Item
         ItemType = type;
     }
 
-    protected override string GetPrefabName()
+    protected override string GetPrefabName(SkinType skinType)
     {
         string prefabname = string.Empty;
         switch (ItemType)

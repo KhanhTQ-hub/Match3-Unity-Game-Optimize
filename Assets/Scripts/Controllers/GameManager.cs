@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Controllers;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -37,7 +38,8 @@ public class GameManager : MonoBehaviour
 
 
     private GameSettings m_gameSettings;
-
+    
+    private SkinModeController m_skinModeController;
 
     private BoardController m_boardController;
 
@@ -50,7 +52,8 @@ public class GameManager : MonoBehaviour
         State = eStateGame.SETUP;
 
         m_gameSettings = Resources.Load<GameSettings>(Constants.GAME_SETTINGS_PATH);
-
+        m_skinModeController = Resources.Load<SkinModeController>(Constants.SKIN_MODE_CONTROLLER_PATH);
+        
         m_uiMenu = FindObjectOfType<UIMainManager>();
         m_uiMenu.Setup(this);
     }
@@ -84,7 +87,7 @@ public class GameManager : MonoBehaviour
     public void LoadLevel(eLevelMode mode)
     {
         m_boardController = new GameObject("BoardController").AddComponent<BoardController>();
-        m_boardController.StartGame(this, m_gameSettings);
+        m_boardController.StartGame(this, m_gameSettings, m_skinModeController);
 
         if (mode == eLevelMode.MOVES)
         {

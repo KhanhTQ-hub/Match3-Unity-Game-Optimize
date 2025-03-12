@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Controllers;
 using UnityEngine;
 
 public class BoardController : MonoBehaviour
@@ -22,6 +23,8 @@ public class BoardController : MonoBehaviour
     private Collider2D m_hitCollider;
 
     private GameSettings m_gameSettings;
+    
+    private SkinModeController m_skinModeController;
 
     private List<Cell> m_potentialMatch;
 
@@ -31,17 +34,19 @@ public class BoardController : MonoBehaviour
 
     private bool m_gameOver;
 
-    public void StartGame(GameManager gameManager, GameSettings gameSettings)
+    public void StartGame(GameManager gameManager, GameSettings gameSettings, SkinModeController skinMode)
     {
         m_gameManager = gameManager;
 
         m_gameSettings = gameSettings;
+        
+        m_skinModeController = skinMode;
 
         m_gameManager.StateChangedAction += OnGameStateChange;
 
         m_cam = Camera.main;
 
-        m_board = new Board(this.transform, gameSettings);
+        m_board = new Board(this.transform, gameSettings, skinMode);
 
         Fill();
     }

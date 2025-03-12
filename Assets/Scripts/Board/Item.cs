@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Enums;
 
 [Serializable]
 public class Item
@@ -12,9 +13,9 @@ public class Item
     public Transform View { get; private set; }
 
 
-    public virtual void SetView()
+    public virtual void SetView(SkinType skinType)
     {
-        string prefabname = GetPrefabName();
+        string prefabname = GetPrefabName(skinType);
 
         if (!string.IsNullOrEmpty(prefabname))
         {
@@ -26,7 +27,7 @@ public class Item
         }
     }
 
-    protected virtual string GetPrefabName() { return string.Empty; }
+    protected virtual string GetPrefabName(SkinType skinType) { return string.Empty; }
 
     public virtual void SetCell(Cell cell)
     {
