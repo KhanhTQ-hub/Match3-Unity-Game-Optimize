@@ -8,6 +8,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public event Action<eStateGame> StateChangedAction = delegate { };
+    public BoardController BoardController => m_boardController;
 
     public enum eLevelMode
     {
@@ -22,6 +23,7 @@ public class GameManager : MonoBehaviour
         GAME_STARTED,
         PAUSE,
         GAME_OVER,
+        RESTART
     }
 
     private eStateGame m_state;
@@ -46,6 +48,8 @@ public class GameManager : MonoBehaviour
     private UIMainManager m_uiMenu;
 
     private LevelCondition m_levelCondition;
+    
+    private eLevelMode m_levelMode;
 
     private void Awake()
     {
@@ -89,6 +93,7 @@ public class GameManager : MonoBehaviour
         m_boardController = new GameObject("BoardController").AddComponent<BoardController>();
         m_boardController.StartGame(this, m_gameSettings, m_skinModeController);
 
+        m_levelMode = mode;
         if (mode == eLevelMode.MOVES)
         {
             m_levelCondition = this.gameObject.AddComponent<LevelMoves>();
@@ -105,6 +110,14 @@ public class GameManager : MonoBehaviour
         State = eStateGame.GAME_STARTED;
     }
 
+    public void RestartLevel()
+    {
+        if (State != eStateGame.GAME_STARTED) return;
+
+        ClearLevel();
+        LoadLevel(m_levelMode);
+    }
+    
     public void GameOver()
     {
         StartCoroutine(WaitBoardController());

@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class UIMainManager : MonoBehaviour
 {
+    public GameManager GameManager => m_gameManager;
+    
     private IMenu[] m_menuList;
 
     private GameManager m_gameManager;
@@ -48,6 +50,7 @@ public class UIMainManager : MonoBehaviour
     internal void Setup(GameManager gameManager)
     {
         m_gameManager = gameManager;
+        
         m_gameManager.StateChangedAction += OnGameStateChange;
     }
 
@@ -67,6 +70,9 @@ public class UIMainManager : MonoBehaviour
                 ShowMenu<UIPanelPause>();
                 break;
             case GameManager.eStateGame.GAME_OVER:
+                ShowMenu<UIPanelGameOver>();
+                break;
+            case GameManager.eStateGame.RESTART:
                 ShowMenu<UIPanelGameOver>();
                 break;
         }

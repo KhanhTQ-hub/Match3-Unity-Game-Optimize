@@ -142,6 +142,8 @@ public class Board
 
     internal void FillGapsWithNewItems()
     {
+        var itemCount = ItemCount();
+        
         for (int x = 0; x < boardSizeX; x++)
         {
             for (int y = 0; y < boardSizeY; y++)
@@ -149,9 +151,37 @@ public class Board
                 Cell cell = m_cells[x, y];
                 if (!cell.IsEmpty) continue;
 
+                HashSet<NormalItem.eNormalType> adjacentTypes = new HashSet<NormalItem.eNormalType>();
+
+                int[,] directions = { { -1, 0 }, { 1, 0 }, { 0, -1 }, { 0, 1 } }; // Trái, phải, trên, dưới
+                for (int i = 0; i < directions.GetLength(0); i++)
+                {
+                    int nx = x + directions[i, 0];
+                    int ny = y + directions[i, 1];
+                    if (nx >= 0 && nx < boardSizeX && ny >= 0 && ny < boardSizeY)
+                    {
+                        if (!m_cells[nx, ny].IsEmpty && m_cells[nx, ny].Item is NormalItem adjacentItem)
+                        {
+                            adjacentTypes.Add(adjacentItem.ItemType);
+                        }
+                    }
+                }
+                
+                var bestType = Utils.GetRandomNormalType();
+                int minCount = int.MaxValue;
+                
+                foreach (var kvp in itemCount)
+                {
+                    if (!adjacentTypes.Contains(kvp.Key) && kvp.Value < minCount)
+                    {
+                        bestType = kvp.Key;
+                        minCount = kvp.Value;
+                    }
+                }
+                
                 NormalItem item = new NormalItem();
 
-                item.SetType(Utils.GetRandomNormalType());
+                item.SetType(bestType);
                 item.SetView(m_skinType);
                 item.SetViewRoot(m_root);
 
@@ -159,6 +189,26 @@ public class Board
                 cell.ApplyItemPosition(true);
             }
         }
+    }
+
+    private Dictionary<NormalItem.eNormalType, int> ItemCount()
+    {
+        var itemCount = new Dictionary<NormalItem.eNormalType, int>();
+        for (int x = 0; x < boardSizeX; x++)
+        {
+            for (int y = 0; y < boardSizeY; y++)
+            {
+                if (!m_cells[x, y].IsEmpty && m_cells[x, y].Item is NormalItem normalItem)
+                {
+                    if (!itemCount.ContainsKey(normalItem.ItemType))
+                        itemCount[normalItem.ItemType] = 0;
+
+                    itemCount[normalItem.ItemType]++;
+                }
+            }
+        }
+        
+        return itemCount;
     }
 
     internal void ExplodeAllItems()

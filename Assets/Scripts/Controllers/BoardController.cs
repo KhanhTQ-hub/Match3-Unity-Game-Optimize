@@ -182,7 +182,7 @@ public class BoardController : MonoBehaviour
 
     private void FindMatchesAndCollapse()
     {
-        List<Cell> matches = m_board.FindFirstMatch();
+        List<Cell> matches = m_board.FindFirstMatch(); // Check có 3 cai trung nhau nao ko
 
         if (matches.Count > 0)
         {
@@ -200,7 +200,7 @@ public class BoardController : MonoBehaviour
             else
             {
                 //StartCoroutine(RefillBoardCoroutine());
-                StartCoroutine(ShuffleBoardCoroutine());
+                StartCroutineShuffleBoard();
             }
         }
     }
@@ -250,6 +250,7 @@ public class BoardController : MonoBehaviour
         FindMatchesAndCollapse();
     }
 
+    // Clear all items and refill the board
     private IEnumerator RefillBoardCoroutine()
     {
         m_board.ExplodeAllItems();
@@ -263,6 +264,11 @@ public class BoardController : MonoBehaviour
         FindMatchesAndCollapse();
     }
 
+    public void StartCroutineShuffleBoard()
+    {
+        StartCoroutine(ShuffleBoardCoroutine());
+    }
+    
     private IEnumerator ShuffleBoardCoroutine()
     {
         m_board.Shuffle();
