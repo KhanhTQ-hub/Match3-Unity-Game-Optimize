@@ -16,7 +16,17 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 706d85b70575bcf448e0018c852c4bd0
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 5785728133dd6874a9bec2835072613e
+    m_Address: Views/PanelMain
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 33d61370c718b4288b67fd6d743c32e1
+    m_Address: DefaultModalBackdrop
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 6c64dd80f1b595040916c21479dde45d, type: 2}
   m_SchemaSet:

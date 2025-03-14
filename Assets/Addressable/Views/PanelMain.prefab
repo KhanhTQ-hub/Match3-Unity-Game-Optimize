@@ -487,6 +487,8 @@ GameObject:
   - component: {fileID: 2838417793994034881}
   - component: {fileID: 7818722547749757638}
   - component: {fileID: 5817100769878785284}
+  - component: {fileID: 8940793557955722495}
+  - component: {fileID: 4881704521298685572}
   m_Layer: 5
   m_Name: PanelMain
   m_TagString: Untagged
@@ -568,3 +570,55 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   btnTimer: {fileID: 5413510399242293365}
   btnMoves: {fileID: 2705530844702453381}
+--- !u!225 &8940793557955722495
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8987435932426123862}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &4881704521298685572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8987435932426123862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7315af08ea4661c46a8f2359c15ab579, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _usePrefabNameAsIdentifier: 1
+  _identifier: 
+  _rectTransform: {fileID: 0}
+  _canvasGroup: {fileID: 0}
+  _parent: {fileID: 0}
+  _animationContainer:
+    _enterAnimation:
+      _partnerIdentifierRegex: 
+      _assetType: 0
+      _animationBehaviour: {fileID: 0}
+      _animationObject: {fileID: 0}
+      _onAnimationBegin:
+        m_PersistentCalls:
+          m_Calls: []
+      _onAnimationComplete:
+        m_PersistentCalls:
+          m_Calls: []
+    _exitAnimation:
+      _partnerIdentifierRegex: 
+      _assetType: 0
+      _animationBehaviour: {fileID: 0}
+      _animationObject: {fileID: 0}
+      _onAnimationBegin:
+        m_PersistentCalls:
+          m_Calls: []
+      _onAnimationComplete:
+        m_PersistentCalls:
+          m_Calls: []

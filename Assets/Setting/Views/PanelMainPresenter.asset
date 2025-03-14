@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f009d66a54f47f796f78a80a94d7762, type: 3}
+  m_Name: PanelMainPresenter
+  m_EditorClassIdentifier: 
+  _viewPresenterType:
+    classRef: View.PanelMainPresenter, Assembly-CSharp
+  _loadAsync: 0
+  _playAnimation: 0
+  _assetPath: Views/PanelMain
+  _containerName: Modal
+  _poolingPolicy: 0

@@ -444,7 +444,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _uiSettings: {fileID: 11400000, guid: 7ee71a0f021e0564089c24dc728008f3, type: 2}
   _containerSettings: {fileID: 11400000, guid: b32acb1545de9f04990c14d6462c0322, type: 2}
-  _viewConfigs: []
+  _viewConfigs:
+  - {fileID: 11400000, guid: 1696b8299a109c044845283fa2cd8b81, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
