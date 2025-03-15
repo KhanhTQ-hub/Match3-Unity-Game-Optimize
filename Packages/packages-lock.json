@@ -37,13 +37,14 @@
       "url": "http://package.openupm.com"
     },
     "com.ktgame.core": {
-      "version": "file:com.ktgame.core",
+      "version": "1.0.6",
       "depth": 0,
-      "source": "embedded",
+      "source": "registry",
       "dependencies": {
         "com.ktgame.unitask": "1.0.0",
         "com.ktgame.foundation": "1.0.1"
-      }
+      },
+      "url": "http://package.openupm.com"
     },
     "com.ktgame.foundation": {
       "version": "1.0.3",
@@ -62,9 +63,9 @@
       "url": "http://package.openupm.com"
     },
     "com.ktgame.manager.ui": {
-      "version": "file:com.ktgame.manager.ui",
+      "version": "1.0.3",
       "depth": 0,
-      "source": "embedded",
+      "source": "registry",
       "dependencies": {
         "com.ktgame.core": "1.0.5",
         "com.ktgame.foundation": "1.0.3",
@@ -73,17 +74,26 @@
         "com.ktgame.unregister": "1.0.1",
         "com.ktgame.utils.class-type-reference": "1.0.1",
         "com.ktgame.unitask": "1.0.1"
-      }
+      },
+      "url": "http://package.openupm.com"
+    },
+    "com.ktgame.services.audio": {
+      "version": "https://github.com/KhanhTQ-hub/com.ktgame.services.audio.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "9702a44d175e09c3be3b5d73e15759e5120fa506"
     },
     "com.ktgame.services.scene": {
-      "version": "file:com.ktgame.services.scene",
+      "version": "1.0.3",
       "depth": 0,
-      "source": "embedded",
+      "source": "registry",
       "dependencies": {
         "com.ktgame.core": "1.0.1",
         "com.ktgame.utils.class-type-reference": "1.0.0",
         "com.ktgame.unitask": "1.0.0"
-      }
+      },
+      "url": "http://package.openupm.com"
     },
     "com.ktgame.unitask": {
       "version": "1.0.1",
