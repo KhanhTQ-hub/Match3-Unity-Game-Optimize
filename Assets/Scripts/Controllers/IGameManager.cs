@@ -1,15 +1,16 @@
 using System;
 using com.ktgame.core.manager;
+using Enums;
 
 namespace GamManager
 {
     public interface IGameManager : IManager
     {
-        GameManager.eStateGame State { get; }
+        StateGame State { get; }
         void ClearLevel();
-        void SetState(GameManager.eStateGame state);
-        event Action<GameManager.eStateGame> StateChangedAction;
-        void LoadLevel(GameManager.eLevelMode mode);
+        void SetState(StateGame state);
+        event Action<StateGame> StateChangedAction;
+        void LoadLevel(LevelMode mode);
         void RestartLevel();
     }
 

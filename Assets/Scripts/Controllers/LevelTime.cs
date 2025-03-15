@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using com.ktgame.core.di;
+using Enums;
 using GamManager;
 using UnityEngine;
 using UnityEngine.UI;
@@ -26,7 +27,7 @@ public class LevelTime : LevelCondition
     {
         if (m_conditionCompleted) return;
 
-        if (m_mngr.State != GameManager.eStateGame.GAME_STARTED) return;
+        if (m_mngr.State != StateGame.GAME_STARTED) return;
 
         m_time -= Time.deltaTime;
 

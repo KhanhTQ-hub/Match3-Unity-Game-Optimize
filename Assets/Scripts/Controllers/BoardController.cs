@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Controllers;
+using Enums;
 using GamManager;
 using UnityEngine;
 
@@ -35,7 +36,7 @@ public class BoardController : MonoBehaviour
 
     private bool m_gameOver;
 
-    public void StartGame(IGameManager gameManager, GameSettings gameSettings, SkinModeController skinMode)
+    public void StartGame(IGameManager gameManager, GameSettings gameSettings, SkinModeController skinMode, Camera camera)
     {
         m_gameManager = gameManager;
 
@@ -45,9 +46,9 @@ public class BoardController : MonoBehaviour
 
         m_gameManager.StateChangedAction += OnGameStateChange;
 
-        m_cam = Camera.main;
+        m_cam = camera;
 
-        m_board = new Board(this.transform, gameSettings, skinMode);
+        m_board = new Board(this.transform.parent, gameSettings, skinMode);
 
         Fill();
     }
@@ -58,17 +59,17 @@ public class BoardController : MonoBehaviour
         FindMatchesAndCollapse();
     }
 
-    private void OnGameStateChange(GameManager.eStateGame state)
+    private void OnGameStateChange(StateGame state)
     {
         switch (state)
         {
-            case GameManager.eStateGame.GAME_STARTED:
+            case StateGame.GAME_STARTED:
                 IsBusy = false;
                 break;
-            case GameManager.eStateGame.PAUSE:
+            case StateGame.PAUSE:
                 IsBusy = true;
                 break;
-            case GameManager.eStateGame.GAME_OVER:
+            case StateGame.GAME_OVER:
                 m_gameOver = true;
                 StopHints();
                 break;
@@ -76,7 +77,7 @@ public class BoardController : MonoBehaviour
     }
 
 
-    public void Update()
+    public void Tick()
     {
         if (m_gameOver) return;
         if (IsBusy) return;

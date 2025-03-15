@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using com.ktgame.core.di;
+using Enums;
 using GamManager;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,7 +8,7 @@ using UnityEngine.UI;
 public class UIMainManager : MonoBehaviour
 {
     public IGameManager GameManager => m_gameManager;
-    
+
     private IMenu[] m_menuList;
 
     [Inject] private IGameManager m_gameManager;
@@ -31,20 +29,20 @@ public class UIMainManager : MonoBehaviour
     internal void ShowMainMenu()
     {
         m_gameManager.ClearLevel();
-        m_gameManager.SetState(GamManager.GameManager.eStateGame.MAIN_MENU);
+        m_gameManager.SetState(StateGame.MAIN_MENU);
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (m_gameManager.State == GamManager.GameManager.eStateGame.GAME_STARTED)
+            if (m_gameManager.State == StateGame.GAME_STARTED)
             {
-                m_gameManager.SetState(GamManager.GameManager.eStateGame.PAUSE);
+                m_gameManager.SetState(StateGame.PAUSE);
             }
-            else if (m_gameManager.State == GamManager.GameManager.eStateGame.PAUSE)
+            else if (m_gameManager.State == StateGame.PAUSE)
             {
-                m_gameManager.SetState(GamManager.GameManager.eStateGame.GAME_STARTED);
+                m_gameManager.SetState(StateGame.GAME_STARTED);
             }
         }
     }
@@ -52,29 +50,29 @@ public class UIMainManager : MonoBehaviour
     internal void Setup(IGameManager gameManager)
     {
         m_gameManager = gameManager;
-        
+
         m_gameManager.StateChangedAction += OnGameStateChange;
     }
 
-    private void OnGameStateChange(GameManager.eStateGame state)
+    private void OnGameStateChange(StateGame state)
     {
         switch (state)
         {
-            case GamManager.GameManager.eStateGame.SETUP:
+            case StateGame.SETUP:
                 break;
-            case GamManager.GameManager.eStateGame.MAIN_MENU:
+            case StateGame.MAIN_MENU:
                 ShowMenu<UIPanelMain>();
                 break;
-            case GamManager.GameManager.eStateGame.GAME_STARTED:
+            case StateGame.GAME_STARTED:
                 ShowMenu<UIPanelGame>();
                 break;
-            case GamManager.GameManager.eStateGame.PAUSE:
+            case StateGame.PAUSE:
                 ShowMenu<UIPanelPause>();
                 break;
-            case GamManager.GameManager.eStateGame.GAME_OVER:
+            case StateGame.GAME_OVER:
                 ShowMenu<UIPanelGameOver>();
                 break;
-            case GamManager.GameManager.eStateGame.RESTART:
+            case StateGame.RESTART:
                 ShowMenu<UIPanelGameOver>();
                 break;
         }
@@ -85,14 +83,14 @@ public class UIMainManager : MonoBehaviour
         for (int i = 0; i < m_menuList.Length; i++)
         {
             IMenu menu = m_menuList[i];
-            if(menu is T)
+            if (menu is T)
             {
                 menu.Show();
             }
             else
             {
                 menu.Hide();
-            }            
+            }
         }
     }
 
@@ -109,21 +107,21 @@ public class UIMainManager : MonoBehaviour
 
     internal void ShowPauseMenu()
     {
-        m_gameManager.SetState(GamManager.GameManager.eStateGame.PAUSE);
+        m_gameManager.SetState(StateGame.PAUSE);
     }
 
     internal void LoadLevelMoves()
     {
-        m_gameManager.LoadLevel(GamManager.GameManager.eLevelMode.MOVES);
+        m_gameManager.LoadLevel(LevelMode.MOVES);
     }
 
     internal void LoadLevelTimer()
     {
-        m_gameManager.LoadLevel(GamManager.GameManager.eLevelMode.TIMER);
+        m_gameManager.LoadLevel(LevelMode.TIMER);
     }
 
     internal void ShowGameMenu()
     {
-        m_gameManager.SetState(GamManager.GameManager.eStateGame.GAME_STARTED);
+        m_gameManager.SetState(StateGame.GAME_STARTED);
     }
 }

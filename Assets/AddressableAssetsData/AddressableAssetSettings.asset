@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: 706d85b70575bcf448e0018c852c4bd0
   m_currentHash:
     serializedVersion: 2
-    Hash: 659f8b443178bf3c2c11959734a4a663
+    Hash: 69e83eae84ccd2fbf4ad6a9f8acdb45a
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_BundleLocalCatalog: 0
@@ -89,6 +89,7 @@ MonoBehaviour:
   m_LabelTable:
     m_LabelNames:
     - default
+    - Fish
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: a52b99dd2bf7cb345bfffeb8ec159131, type: 2}

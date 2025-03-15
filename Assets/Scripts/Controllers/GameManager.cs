@@ -4,6 +4,7 @@ using System.Collections;
 using com.ktgame.core.di;
 using Controllers;
 using Cysharp.Threading.Tasks;
+using Enums;
 using Manager.Assets;
 using UnityEngine;
 
@@ -12,28 +13,16 @@ namespace GamManager
     public class GameManager : MonoBehaviour, IGameManager
     {
         [Inject] private readonly IAssetManager m_assetManager;
-        public event Action<eStateGame> StateChangedAction = delegate { };
+        [Inject] private readonly IMainViewManager _mainViewManager;
+        [Inject] private readonly IInjector _injector;
+
+        [SerializeField] private Camera m_cam;
+        public event Action<StateGame> StateChangedAction = delegate { };
         public BoardController BoardController => m_boardController;
 
-        public enum eLevelMode
-        {
-            TIMER,
-            MOVES
-        }
+        private StateGame m_state;
 
-        public enum eStateGame
-        {
-            SETUP,
-            MAIN_MENU,
-            GAME_STARTED,
-            PAUSE,
-            GAME_OVER,
-            RESTART
-        }
-
-        private eStateGame m_state;
-
-        public eStateGame State
+        public StateGame State
         {
             get { return m_state; }
             private set
@@ -51,41 +40,40 @@ namespace GamManager
 
         private BoardController m_boardController;
 
-        private UIMainManager m_uiMenu;
-
         private LevelCondition m_levelCondition;
 
-        private eLevelMode m_levelMode;
+        private LevelMode m_levelMode;
+
 
         public int Priority => 0;
         public bool IsInitialized { get; private set; }
 
         public async UniTask Initialize()
         {
-            State = eStateGame.SETUP;
+            State = StateGame.SETUP;
 
             m_gameSettings = await m_assetManager.AddressableLoad<GameSettings>("gamesettings").Task;
-            m_skinModeController = Resources.Load<SkinModeController>(Constants.SKIN_MODE_CONTROLLER_PATH);
+            m_skinModeController = await m_assetManager.AddressableLoad<SkinModeController>("skinmodecontroller").Task;
 
-            m_uiMenu = FindObjectOfType<UIMainManager>();
-            m_uiMenu.Setup(this);
-            
-            State = eStateGame.MAIN_MENU;
-            
+            State = StateGame.MAIN_MENU;
+
             IsInitialized = true;
         }
-        
+
         void Update()
         {
-            if (m_boardController != null) m_boardController.Update();
+            if (m_boardController != null && State == StateGame.GAME_STARTED)
+            {
+                m_boardController.Tick();
+            }
         }
 
 
-        public void SetState(eStateGame state)
+        public void SetState(StateGame state)
         {
             State = state;
 
-            if (State == eStateGame.PAUSE)
+            if (State == StateGame.PAUSE)
             {
                 DOTween.PauseAll();
             }
@@ -95,31 +83,26 @@ namespace GamManager
             }
         }
 
-        public void LoadLevel(eLevelMode mode)
+        public async void LoadLevel(LevelMode mode)
         {
-            m_boardController = new GameObject("BoardController").AddComponent<BoardController>();
-            m_boardController.StartGame(this, m_gameSettings, m_skinModeController);
+            var boardController = await m_assetManager.AddressableLoad<GameObject>("Board/BoardControler").Task;
+            _injector.Resolve(boardController);
+            m_boardController = Instantiate(boardController).GetComponent<BoardController>();
+            m_boardController.transform.position = Vector3.zero;
+            m_boardController.transform.SetParent(this.transform);
+
+            m_boardController.StartGame(this, m_gameSettings, m_skinModeController, m_cam);
 
             m_levelMode = mode;
-            if (mode == eLevelMode.MOVES)
-            {
-                m_levelCondition = this.gameObject.AddComponent<LevelMoves>();
-                m_levelCondition.Setup(m_gameSettings.LevelMoves, m_uiMenu.GetLevelConditionView(), m_boardController);
-            }
-            else if (mode == eLevelMode.TIMER)
-            {
-                m_levelCondition = this.gameObject.AddComponent<LevelTime>();
-                m_levelCondition.Setup(m_gameSettings.LevelMoves, m_uiMenu.GetLevelConditionView(), this);
-            }
 
-            m_levelCondition.ConditionCompleteEvent += GameOver;
+            //m_levelCondition.ConditionCompleteEvent += GameOver;
 
-            State = eStateGame.GAME_STARTED;
+            State = StateGame.GAME_STARTED;
         }
 
         public void RestartLevel()
         {
-            if (State != eStateGame.GAME_STARTED) return;
+            if (State != StateGame.GAME_STARTED) return;
 
             ClearLevel();
             LoadLevel(m_levelMode);
@@ -149,7 +132,7 @@ namespace GamManager
 
             yield return new WaitForSeconds(1f);
 
-            State = eStateGame.GAME_OVER;
+            State = StateGame.GAME_OVER;
 
             if (m_levelCondition != null)
             {

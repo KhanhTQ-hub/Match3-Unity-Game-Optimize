@@ -122,6 +122,50 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &234015978
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 234015979}
+  - component: {fileID: 234015980}
+  m_Layer: 0
+  m_Name: MainViewManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &234015979
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234015978}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1530639263}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &234015980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234015978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e34684e362d887c4aa940cd302760c20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &414152463
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,6 +359,7 @@ Transform:
   - {fileID: 1489087550}
   - {fileID: 1666714263}
   - {fileID: 2102915744}
+  - {fileID: 234015979}
   - {fileID: 1879110744}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -503,6 +548,8 @@ MonoBehaviour:
   _containerSettings: {fileID: 11400000, guid: b32acb1545de9f04990c14d6462c0322, type: 2}
   _viewConfigs:
   - {fileID: 11400000, guid: 1696b8299a109c044845283fa2cd8b81, type: 2}
+  - {fileID: 11400000, guid: c91d9ace0a923404fb632e33c50126e5, type: 2}
+  _camera: {fileID: 1489087548}
 --- !u!1 &2102915743
 GameObject:
   m_ObjectHideFlags: 0
@@ -547,6 +594,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ed4360ab36daef4c9dd32250c4fa46d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_cam: {fileID: 1489087548}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

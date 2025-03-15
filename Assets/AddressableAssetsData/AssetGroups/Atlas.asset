@@ -20,7 +20,8 @@ MonoBehaviour:
   - m_GUID: 6fe212ede25815e4a97ad7458cde2c4e
     m_Address: Atlas/Fish
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - Fish
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 6c64dd80f1b595040916c21479dde45d, type: 2}
