@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using GamManager;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,7 +18,7 @@ public class LevelCondition : MonoBehaviour
         m_txt = txt;
     }
 
-    public virtual void Setup(float value, Text txt, GameManager mngr)
+    public virtual void Setup(float value, Text txt, IGameManager mngr)
     {
         m_txt = txt;
     }

@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Controllers;
+using GamManager;
 using UnityEngine;
 
 public class BoardController : MonoBehaviour
@@ -14,7 +15,7 @@ public class BoardController : MonoBehaviour
 
     private Board m_board;
 
-    private GameManager m_gameManager;
+    private IGameManager m_gameManager;
 
     private bool m_isDragging;
 
@@ -34,7 +35,7 @@ public class BoardController : MonoBehaviour
 
     private bool m_gameOver;
 
-    public void StartGame(GameManager gameManager, GameSettings gameSettings, SkinModeController skinMode)
+    public void StartGame(IGameManager gameManager, GameSettings gameSettings, SkinModeController skinMode)
     {
         m_gameManager = gameManager;
 

@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using com.ktgame.core.di;
+using GamManager;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,9 +9,9 @@ public class LevelTime : LevelCondition
 {
     private float m_time;
 
-    private GameManager m_mngr;
+    [Inject] private IGameManager m_mngr;
 
-    public override void Setup(float value, Text txt, GameManager mngr)
+    public override void Setup(float value, Text txt, IGameManager mngr)
     {
         base.Setup(value, txt, mngr);
 

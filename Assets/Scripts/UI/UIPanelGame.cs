@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using com.ktgame.core.di;
+using GamManager;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class UIPanelGame : MonoBehaviour,IMenu
@@ -9,6 +11,7 @@ public class UIPanelGame : MonoBehaviour,IMenu
     [SerializeField] private Button btnRestart;
 
     private UIMainManager m_mngr;
+    [Inject] private readonly IGameManager m_gameManager;
 
     private void Awake()
     {
@@ -18,7 +21,7 @@ public class UIPanelGame : MonoBehaviour,IMenu
 
     private void OnClickRestart()
     {
-        m_mngr.GameManager.RestartLevel();
+        m_gameManager.RestartLevel();
     }
 
     private void OnClickPause()
